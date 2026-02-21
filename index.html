@@ -148,6 +148,7 @@ nav {
   color: var(--text-secondary);
   position: relative;
   transition: var(--transition);
+  cursor: pointer;
 }
 
 .nav-link:hover {
@@ -676,6 +677,16 @@ nav {
   overflow: hidden;
 }
 
+.calculator-note {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 217, 255, 0.05);
+  border-radius: var(--radius-lg);
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
 /* ════════════════════════════════════════════════════════════ */
 /* TESTIMONIALS */
 /* ════════════════════════════════════════════════════════════ */
@@ -819,6 +830,8 @@ nav {
 }
 
 .footer-divider {
+  max-width: 1400px;
+  margin: 0 auto;
   border-top: 1px solid rgba(212, 175, 55, 0.1);
   padding-top: 40px;
   display: flex;
@@ -966,6 +979,10 @@ nav {
     font-size: 32px;
   }
   
+  .calculator-embed {
+    padding: 20px;
+  }
+  
   .cta-section {
     padding: 60px 30px;
     margin: 80px 0;
@@ -998,10 +1015,10 @@ nav {
   <div class="header-content">
     <div class="logo">✨ Aladdin</div>
     <nav>
-      <a href="#features" class="nav-link">Features</a>
-      <a href="#pricing" class="nav-link">Pricing</a>
-      <a href="#resources" class="nav-link">Resources</a>
-      <a href="#calculator" class="nav-link">Calculator</a>
+      <span class="nav-link" onclick="scrollTo('#features')">Features</span>
+      <span class="nav-link" onclick="scrollTo('#pricing')">Pricing</span>
+      <span class="nav-link" onclick="scrollTo('#resources')">Resources</span>
+      <span class="nav-link" onclick="scrollTo('#calculator')">Calculator</span>
     </nav>
     <button class="btn-nav" onclick="scrollTo('#calculator'); return false;">Start Analyzing</button>
   </div>
@@ -1155,7 +1172,7 @@ nav {
 </section>
 
 <!-- ════════════════════════════════════════════════════════════ -->
-<!-- CALCULATOR EMBED -->
+<!-- CALCULATOR SECTION -->
 <!-- ════════════════════════════════════════════════════════════ -->
 
 <section class="section" id="calculator">
@@ -1166,11 +1183,20 @@ nav {
     </div>
     
     <div class="calculator-embed">
+      <p style="text-align: center; color: var(--text-secondary); padding: 40px 20px;">
+        <strong>Loading Interactive Calculator...</strong><br><br>
+        If the calculator doesn't load below, please ensure you're using a modern browser (Chrome, Firefox, Safari, Edge) with JavaScript enabled.
+      </p>
       <iframe 
+        id="calculator-frame"
         src="analyzer.html" 
-        style="width: 100%; height: 3000px; border: none; border-radius: 12px; overflow: hidden;" 
+        style="width: 100%; height: 3500px; border: none; border-radius: 12px; overflow: hidden; display: none;" 
         title="Lease vs Rent Financial Analyzer">
       </iframe>
+    </div>
+    
+    <div class="calculator-note">
+      💡 Pro Tip: Try adjusting the sliders to see how market conditions impact your lease vs rent decision in real-time.
     </div>
   </div>
 </section>
@@ -1241,9 +1267,9 @@ nav {
     <div class="footer-section">
       <h4>Product</h4>
       <div class="footer-links">
-        <a href="#calculator">Calculator</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#">Features</a>
+        <a onclick="scrollTo('#calculator')">Calculator</a>
+        <a onclick="scrollTo('#pricing')">Pricing</a>
+        <a onclick="scrollTo('#features')">Features</a>
         <a href="#">Security</a>
       </div>
     </div>
@@ -1292,19 +1318,6 @@ nav {
 
 <script>
 // ════════════════════════════════════════════════════════════
-// HEADER SCROLL EFFECT
-// ════════════════════════════════════════════════════════════
-
-window.addEventListener('scroll', () => {
-  const header = document.getElementById('header');
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-});
-
-// ════════════════════════════════════════════════════════════
 // SMOOTH SCROLL WITH PROPER OFFSET
 // ════════════════════════════════════════════════════════════
 
@@ -1336,6 +1349,19 @@ document.addEventListener('click', (e) => {
 });
 
 // ════════════════════════════════════════════════════════════
+// HEADER SCROLL EFFECT
+// ════════════════════════════════════════════════════════════
+
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
+// ════════════════════════════════════════════════════════════
 // INTERSECTION OBSERVER FOR ANIMATIONS
 // ════════════════════════════════════════════════════════════
 
@@ -1359,6 +1385,17 @@ document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card').for
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'all 0.6s ease';
   observer.observe(el);
+});
+
+// ════════════════════════════════════════════════════════════
+// IFRAME LOADER
+// ════════════════════════════════════════════════════════════
+
+window.addEventListener('load', () => {
+  const frame = document.getElementById('calculator-frame');
+  if (frame) {
+    frame.style.display = 'block';
+  }
 });
 </script>
 
