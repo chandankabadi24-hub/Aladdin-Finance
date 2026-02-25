@@ -62,13 +62,30 @@
     }
 
     body.light {
+      --site-bg:      #F5F1EA;
+      --site-card:    #FFFFFF;
+      --site-border:  rgba(150,100,0,0.15);
+      --site-gold:    #9A6700;
+      --site-teal:    #047857;
+      --site-red:     #DC2626;
+      --site-green:   #15803D;
+      --site-muted:   #4B5563;
+      --site-text:    #0F1A2E;
+      --site-subtext: #374151;
+
       --bg:     #F5F1EA;
       --card:   #FFFFFF;
       --card-rgb: 255,255,255;
       --text:   #0F1A2E;
       --accent: #C4860A;
       --muted:  #5A6E8A;
-      --border: rgba(180,130,10,0.18);
+      --green:  #2ECC8F;
+      --amber:  #F0B429;
+      --red:    #FF5C5C;
+      --purple: #9D7FEA;
+      --border: rgba(150,100,0,0.15);
+      --cyan:   #047857;
+      --orange: #C2410C;
     }
 
     /* ── Noise grain overlay ── */
@@ -601,15 +618,16 @@
        MOBILE MENU
     ═══════════════════════════════════ */
     .mobile-menu-overlay {
-      display: none;
+      display: block;
       position: fixed; inset: 0;
       background: rgba(2,8,16,0.6);
       backdrop-filter: blur(4px);
       z-index: 999;
       opacity: 0;
+      pointer-events: none;
       transition: opacity 0.3s ease;
     }
-    .mobile-menu-overlay.open { opacity: 1; }
+    .mobile-menu-overlay.open { opacity: 1; pointer-events: auto; }
     .mobile-menu {
       position: fixed; top: 0; right: -100%;
       width: min(320px, 85vw); height: 100dvh;
@@ -662,12 +680,115 @@
       display: flex; flex-direction: column; gap: 10px;
     }
 
+    /* ═══════════════════════════════════
+       LIGHT MODE — SITE-CHROME OVERRIDES
+    ═══════════════════════════════════ */
+    body.light #site-nav {
+      background: rgba(245,241,234,0.88);
+      border-bottom-color: rgba(150,100,0,0.12);
+    }
+    body.light #site-nav.scrolled {
+      background: rgba(245,241,234,0.96);
+      border-bottom-color: rgba(150,100,0,0.2);
+    }
+    body.light .nav-logo-text { color: #0F1A2E; }
+    body.light .nav-links a { color: #4B5563; }
+    body.light .nav-links a:hover { color: #0F1A2E; }
+    body.light .nav-btn-ghost {
+      border-color: rgba(150,100,0,0.3);
+      color: #9A6700;
+    }
+    body.light .nav-btn-ghost:hover { background: rgba(150,100,0,0.08); }
+
+    body.light .hero-badge {
+      border-color: rgba(4,120,87,0.35);
+      background: rgba(4,120,87,0.07);
+      color: #047857;
+    }
+    body.light .hero-badge::before { background: #047857; box-shadow: 0 0 8px #047857; }
+    body.light .hero-headline { color: #0F1A2E; }
+    body.light .hero-headline .gold { color: #9A6700; }
+    body.light .hero-sub { color: #374151; }
+    body.light .hero-cta-secondary {
+      border-color: rgba(150,100,0,0.3);
+      color: #0F1A2E;
+    }
+    body.light .hero-cta-secondary:hover { background: rgba(150,100,0,0.06); border-color: rgba(150,100,0,0.55); }
+    body.light .hero-stats {
+      background: rgba(255,255,255,0.85);
+      border-color: rgba(150,100,0,0.18);
+    }
+    body.light .hero-stat { border-right-color: rgba(150,100,0,0.12) !important; border-bottom-color: rgba(150,100,0,0.12) !important; }
+    body.light .hero-stat-value { color: #9A6700; }
+    body.light .hero-stat-label { color: #4B5563; }
+    body.light .hero-scroll-hint { color: #6B7280; }
+    body.light .scroll-arrow { border-color: #6B7280; }
+
+    body.light .section-eyebrow { color: #9A6700; }
+    body.light .section-eyebrow::before { background: #9A6700; }
+    body.light .section-title { color: #0F1A2E; }
+    body.light .section-title .italic { color: #9A6700; }
+    body.light .section-desc { color: #374151; }
+
+    body.light .why-card {
+      background: rgba(255,255,255,0.9);
+      border-color: rgba(150,100,0,0.14);
+    }
+    body.light .why-card::before { background: linear-gradient(90deg, transparent, #9A6700, transparent); }
+    body.light .why-card:hover {
+      border-color: rgba(150,100,0,0.3);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(150,100,0,0.08);
+    }
+    body.light .why-card-icon {
+      background: rgba(150,100,0,0.08);
+      border-color: rgba(150,100,0,0.2);
+    }
+    body.light .why-card-title { color: #0F1A2E; }
+    body.light .why-card-body { color: #374151; }
+
+    body.light .how-step-title { color: #0F1A2E; }
+    body.light .how-step-body { color: #374151; }
+    body.light .how-step-body strong { color: #9A6700; }
+    body.light .how-divider { background: linear-gradient(90deg, #9A6700, transparent); }
+    body.light .how-step-number { color: rgba(150,100,0,0.15); }
+
+    body.light .site-sep { background: rgba(150,100,0,0.1); }
+
+    body.light .disclaimer-inner {
+      border-color: rgba(150,100,0,0.12);
+      background: rgba(150,100,0,0.03);
+      color: #4B5563;
+    }
+    body.light .disclaimer-inner strong { color: #374151; }
+
+    body.light #site-footer { border-top-color: rgba(150,100,0,0.12); }
+    body.light .footer-brand-name { color: #0F1A2E; }
+    body.light .footer-brand-name span { color: #9A6700; }
+    body.light .footer-tagline { color: #374151; }
+    body.light .footer-badge { color: #4B5563; border-color: rgba(150,100,0,0.2); }
+    body.light .footer-col-title { color: #4B5563; }
+    body.light .footer-links a { color: #4B5563; }
+    body.light .footer-links a:hover { color: #9A6700; }
+    body.light .footer-bottom { border-top-color: rgba(150,100,0,0.1); }
+    body.light .footer-copy { color: #6B7280; }
+    body.light .footer-github {
+      color: #9A6700;
+      border-color: rgba(150,100,0,0.22);
+      background: rgba(150,100,0,0.04);
+    }
+    body.light .footer-github:hover { background: rgba(150,100,0,0.1); border-color: #9A6700; }
+
+    body.light body::after {
+      background-image:
+        linear-gradient(rgba(150,100,0,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(150,100,0,0.05) 1px, transparent 1px);
+    }
+
     /* ── Responsive ── */
     @media (max-width: 768px) {
       /* Nav */
       .nav-hamburger { display: flex; }
       .nav-btn-primary { display: none; }
-      .mobile-menu-overlay { display: block; }
 
       /* Hero */
       #site-hero { padding: 88px 20px 60px; }
@@ -882,13 +1003,19 @@
         }
 
         body.light {
-            --bg: #f8fafb;
+            --bg: #F5F1EA;
             --card: #ffffff;
             --card-rgb: 255, 255, 255;
             --text: #0f172a;
             --accent: #1e40af;
             --muted: #475569;
-            --border: #cbd5e1;
+            --border: #d1c8b0;
+            --green:  #15803d;
+            --amber:  #92400e;
+            --red:    #b91c1c;
+            --purple: #5b21b6;
+            --cyan:   #047857;
+            --orange: #c2410c;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1690,6 +1817,53 @@
 
         /* 13. Input error styling — red tint is fine but soften the glow on white. */
         body.light input.input-error { box-shadow: 0 0 0 3px rgba(220,38,38,0.15) !important; }
+
+        /* 14. Verdict stat values — all three states on white need darkening */
+        body.light .verdict-stat-value.positive { color: #15803d; }
+        body.light .verdict-stat-value.negative { color: #b91c1c; }
+        body.light .verdict-stat-value.neutral  { color: #92400e; }
+
+        /* 15. Verdict banner backgrounds need more contrast on light */
+        body.light .verdict-banner.lease-wins { background: linear-gradient(135deg, rgba(21,128,61,0.08), rgba(4,120,87,0.05)); border-color: rgba(21,128,61,0.35); }
+        body.light .verdict-banner.rent-wins  { background: linear-gradient(135deg, rgba(185,28,28,0.08), rgba(194,65,12,0.05)); border-color: rgba(185,28,28,0.35); }
+        body.light .verdict-banner.neutral    { background: linear-gradient(135deg, rgba(146,64,14,0.07), rgba(194,65,12,0.04)); border-color: rgba(146,64,14,0.3); }
+
+        /* 16. Metric positive/negative text */
+        body.light .metric-positive { color: #15803d; }
+        body.light .metric-negative { color: #b91c1c; }
+
+        /* 17. Share/reset utility buttons */
+        body.light .share-btn { background: rgba(30,64,175,0.08); color: #1e40af; border-color: rgba(30,64,175,0.25); }
+        body.light .share-btn:hover { background: rgba(30,64,175,0.15); }
+        body.light .global-help-btn { background: rgba(30,64,175,0.08); color: #1e40af; border-color: rgba(30,64,175,0.25); }
+
+        /* 18. Card title and section header text */
+        body.light .card-title { color: #0f172a; }
+        body.light .section-header { color: #1e40af; }
+
+        /* 19. Comparison table hover row */
+        body.light .comparison-table tr:hover { background: #f1f5f9; }
+        body.light .comparison-table td { color: #0f172a; }
+
+        /* 20. Gauge inner background and dial */
+        body.light .gaugeInner { background: #ffffff; }
+
+        /* 21. Presets bar and preset buttons */
+        body.light .preset-btn { border-color: rgba(30,64,175,0.2); color: #1e40af; }
+        body.light .preset-btn:hover { background: rgba(30,64,175,0.08); border-color: #1e40af; color: #1e3a8a; }
+
+        /* 22. Section toggle button */
+        body.light .section-toggle { color: #1e40af; }
+
+        /* 23. Collapsible divider */
+        body.light .divider { background: #e2e8f0; }
+
+        /* 24. Own funds badge inline orange — visible on light */
+        body.light #ownFundsBadge { background: rgba(194,65,12,0.06); border-color: rgba(194,65,12,0.22); }
+
+        /* 25. Validation banners */
+        body.light .validation-banner.error  { background: rgba(185,28,28,0.06); color: #b91c1c; }
+        body.light .validation-banner.warning { background: rgba(146,64,14,0.06); color: #92400e; }
 
     </style>
 </head>
@@ -4189,7 +4363,6 @@ function toggleMobileMenu() {
         document.body.style.overflow = 'hidden';
     }
 }
-
 /* ================= LEASEIQ SITE JS ================= */
 
 // Nav scroll effect
